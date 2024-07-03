@@ -10,6 +10,7 @@ export default class extends Controller {
     console.log(this.dateValue)
     flatpickr(this.element, {
       dateFormat: "Y-m-d",
+      minDate: "today",
       disable: this.dateValue
   })
   }
