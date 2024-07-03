@@ -26,7 +26,7 @@
       <div class="flat-booking">
           <h2>Book this place !</h2>
 
-          <div data-controller="pricecalculator" data-pricecalculator-pricepernight-value=<%= @price %>>
+          <div data-controller="pricecalculator" data-pricecalculator-pricepernight-value=<%= @price %> >
             <%= simple_form_for [@flat, @booking]  do |f| %>
             <%= f.input :start_date,
                         as: :string,

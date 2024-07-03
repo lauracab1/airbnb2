@@ -7,44 +7,32 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-Flat.destroy_all
-Booking.destroy_all
+
 User.destroy_all
+Booking.destroy_all
+Flat.destroy_all
 
-# Flat.create!(
-#   name: 'Cosy in Amsterdam',
-#   address: 'Zeedijk 1 1012 AN Amsterdam',
-#   description: 'A lovely summer feel for this spacious garden flat. Two double bedrooms, open plan living area, large kitchen and a beautiful conservatory',
-#   price_per_night: 75,
-#   number_of_guests: 3
-# )
-
-# Flat.create!(
-#   name: 'Light & Spacious Garden Flat London',
-#   address: '10 Clifton Gardens London W9 1DT',
-#   description: 'A lovely summer feel for this spacious garden flat. Two double bedrooms, open plan living area, large kitchen and a beautiful conservatory',
-#   price_per_night: 75,
-#   number_of_guests: 3
-# )
-User.create!(
+laura = User.create!(
   email: 'laura@gmail.com',
   password: 'angrylolo',
-  pseudo: 'lolo'
+  pseudo: 'lolo',
+  admin: true
+)
+
+aymeric = User.create!(
+  email: 'aymeric@gmail.com',
+  password: 'angryricou',
+  pseudo: 'ricou',
+  admin: true
 )
 
 Flat.create!(
   name: 'Historic in Paris',
-  address: '16 Villa Gaudelet, Paris',
+  address: '12 Place de la république, Paris',
   description: 'A lovely summer feel for this spacious garden flat. Two double bedrooms, open plan living area, large kitchen and a beautiful conservatory',
   price_per_night: 75,
   number_of_guests: 3,
-  user_id: User.first.id
-)
-
-User.create!(
-  email: 'aymeric@gmail.com',
-  password: 'angryricou',
-  pseudo: 'ricou'
+  user: laura
 )
 
 Flat.create!(
@@ -53,7 +41,7 @@ Flat.create!(
   description: 'Soleil, Pastis et Pétanque',
   price_per_night: 75,
   number_of_guests: 3,
-  user_id: User.last.id
+  user: aymeric
 )
 
 # Flat.create!(

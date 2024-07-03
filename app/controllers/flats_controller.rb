@@ -7,15 +7,15 @@ class FlatsController < ApplicationController
   end
 
   def show
+    authorize @flat
     @markers = [{
       lat: @flat.latitude,
       lng: @flat.longitude
     }]
-    @bookings = Booking.where(flat_id: @flat_id)
+    @bookings = Booking.where(flat: @flat)
     @price = @flat.price_per_night
     @dates_booking = @bookings.map { |booking| { from: booking.start_date, to: booking.end_date } }.to_json
     @booking = Booking.new
-    authorize @flat
   end
 
   def new

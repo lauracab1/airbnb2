@@ -8,9 +8,6 @@ export default class extends Controller {
   static targets = ["start", "end", "total"]
 
   connect() {
-    console.log(this.startTarget)
-    console.log(this.endTarget)
-    console.log(this.totalTarget)
   }
 
   update() {
