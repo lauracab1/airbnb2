@@ -1,0 +1,19 @@
+.flat-card {
+  img {
+    height: 180px;
+    border-radius: 10px;
+    border: none !important;
+    min-width: 100%;
+  }
+
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-left: 0;
+
+    .card-price {
+      font-weight: bold;
+    }
+  }
+}

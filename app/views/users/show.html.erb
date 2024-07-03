@@ -1,0 +1,16 @@
+<div class="container">
+  <h1><%= @user.pseudo %>'s profile</h1>
+  <h2>All my flats</h2>
+    <div>
+      <% @flats.each do |flat| %>
+        <p><%= flat.name %></p>
+      <% end %>
+    </div>
+  <h2>All my bookings</h2>
+      <div>
+      <% @bookings.each do |booking| %>
+        <p><%= booking.flat.name %></p>
+      <% end %>
+    </div>
+
+</div>
