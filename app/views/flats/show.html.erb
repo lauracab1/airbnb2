@@ -26,19 +26,19 @@
       <div class="flat-booking">
           <h2>Book this place !</h2>
 
-          <div data-controller="price-calculator" data-price-calculator-priceperday-value=<%= @price %>>
+          <div data-controller="pricecalculator" data-pricecalculator-pricepernight-value=<%= @price %>>
             <%= simple_form_for [@flat, @booking]  do |f| %>
             <%= f.input :start_date,
                         as: :string,
-                        input_html: { data: { controller: "datepicker", datepicker_date_value: @dates_booking, price_calculator_target: "start", action: "change->price-calculator#update"}} %>
+                        input_html: { data: { controller: "datepicker", datepicker_date_value: @dates_booking, pricecalculator_target: "start", action: "change->pricecalculator#update"}} %>
             <%= f.input :end_date,
                         as: :string,
-                        input_html: { data: { controller: "datepicker", datepicker_date_value: @dates_booking, price_calculator_target: "end", action: "change->price-calculator#update"}} %>
+                        input_html: { data: { controller: "datepicker", datepicker_date_value: @dates_booking, pricecalculator_target: "end", action: "change->pricecalculator#update"}} %>
             <%= f.submit %>
             <% end %>
 
             <div>
-              <p data-price-calculator-target="total" ></p>
+              <p data-pricecalculator-target="total" ></p>
             </div>
           </div>
       </div>

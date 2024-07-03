@@ -1,9 +1,16 @@
-
 import { Controller } from "@hotwired/stimulus"
-import flatpickr from "flatpickr"; // You need to import this to use new flatpickr()
+import flatpickr from "flatpickr";
 
 export default class extends Controller {
+    static values = {
+      date: Array
+    }
+
   connect() {
-    flatpickr(this.element)
+    console.log(this.dateValue)
+    flatpickr(this.element, {
+      dateFormat: "Y-m-d",
+      disable: this.dateValue
+  })
   }
 }
