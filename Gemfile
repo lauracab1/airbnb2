@@ -76,3 +76,5 @@ gem "devise"
 gem "pundit"
 gem "ffi", "~> 1.16.3"
 gem 'pg'
+gem 'activestorage', '~> 7.1'
+gem 'cloudinary', '~> 1.22.0' 

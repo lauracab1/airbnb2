@@ -1,17 +1,18 @@
-<div class="banner">
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @flat.photo.key %>')">
 </div>
-<div class="container">
 
+<div class="container">
   <div class="row">
     <div class="flat mt-3">
 
       <div class="flat-content">
+
         <div class="flat-header">
           <div class="">
             <h1><%= @flat.name %></h1>
             <p><%= @flat.address %></p>
           </div>
-          <div>
+          <div class= "flat-links">
             <% if policy(@flat).edit? %>
               <%= link_to 'Edit', edit_flat_path(@flat), class:'btn btn-primary' %>
             <% end %>
@@ -26,33 +27,62 @@
           <p><%= @flat.description %></p>
         </div>
 
-          <div style="width: 100%; height: 200px;"
+          <div class="map" style="width: 100%; height: 200px;"
             data-controller="map"
             data-map-markers-value="<%= @markers.to_json %>"
             data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
           </div>
+
+        <div id="carouselExampleControls" class="carousel slide mt-2" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <% @flat.galerie.each_with_index do |photo, index| %>
+              <div class="carousel-item <%= 'active' if index.zero? %>">
+                <%= cl_image_tag photo.key, class: "d-block w-100", height: 300, style:"object-fit: cover;", crop: :fill %>
+              </div>
+            <% end %>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+
+
+
+
+
+
+
+
+
+
       </div>
 
       <div class="flat-booking">
-          <h2>Book this place !</h2>
 
-          <div data-controller="pricecalculator" data-pricecalculator-pricepernight-value=<%= @price %> >
-            <%= simple_form_for [@flat, @booking]  do |f| %>
-            <%= f.input :start_date,
-                        label: "Date d'arrivée",
-                        as: :string,
-                        input_html: { data: { controller: "datepicker", datepicker_date_value: @dates_booking, pricecalculator_target: "start", action: "change->pricecalculator#update"}} %>
-            <%= f.input :end_date,
-                        label: "Date de départ",
-                        as: :string,
-                        input_html: { data: { controller: "datepicker", datepicker_date_value: @dates_booking, pricecalculator_target: "end", action: "change->pricecalculator#update"}} %>
-            <%= f.submit 'Demande de réservation' %>
-            <% end %>
+        <h2>Book this place !</h2>
 
-            <div>
-              <p data-pricecalculator-target="total" ></p>
-            </div>
+        <div data-controller="pricecalculator" data-pricecalculator-pricepernight-value=<%= @price %> >
+          <%= simple_form_for [@flat, @booking]  do |f| %>
+          <%= f.input :start_date,
+                      label: "Date d'arrivée",
+                      as: :string,
+                      input_html: { data: { controller: "datepicker", datepicker_date_value: @dates_booking, pricecalculator_target: "start", action: "change->pricecalculator#update"}} %>
+          <%= f.input :end_date,
+                      label: "Date de départ",
+                      as: :string,
+                      input_html: { data: { controller: "datepicker", datepicker_date_value: @dates_booking, pricecalculator_target: "end", action: "change->pricecalculator#update"}} %>
+          <%= f.submit 'Demande de réservation' %>
+          <% end %>
+
+          <div>
+            <p data-pricecalculator-target="total" ></p>
           </div>
       </div>
     </div>
+  </div>
 </div>

@@ -24,3 +24,11 @@
 .flat-content {
   margin-top: -5rem;
 }
+
+
+.flat-booking {
+  @media screen and (min-width: 768px){
+    margin-top: -5rem;
+    height: fit-content;
+  }
+}

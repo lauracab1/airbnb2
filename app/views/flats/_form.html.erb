@@ -4,5 +4,7 @@
 <%= f.input :description %>
 <%= f.input :price_per_night %>
 <%= f.input :number_of_guests %>
+<%= f.input :photo, as: :file %>
+<%= f.input :galerie, as: :file, input_html: { multiple: true }  %>
 <%= f.submit class: "btn btn-primary"%>
 <% end %>
