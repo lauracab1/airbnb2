@@ -7,8 +7,18 @@
 
       <div class="flat-content">
         <div class="flat-header">
-          <h1><%= @flat.name %></h1>
-          <p><%= @flat.address %></p>
+          <div class="">
+            <h1><%= @flat.name %></h1>
+            <p><%= @flat.address %></p>
+          </div>
+          <div>
+            <% if policy(@flat).edit? %>
+              <%= link_to 'Edit', edit_flat_path(@flat), class:'btn btn-primary' %>
+            <% end %>
+            <% if policy(@flat).destroy? %>
+              <%= link_to "Delete", flat_path(@flat), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'btn btn-warning' %>
+            <% end %>
+          </div>
         </div>
 
         <div class="flat-info">
@@ -16,7 +26,7 @@
           <p><%= @flat.description %></p>
         </div>
 
-          <div style="width: 100%; height: 600px;"
+          <div style="width: 100%; height: 200px;"
             data-controller="map"
             data-map-markers-value="<%= @markers.to_json %>"
             data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
@@ -29,12 +39,14 @@
           <div data-controller="pricecalculator" data-pricecalculator-pricepernight-value=<%= @price %> >
             <%= simple_form_for [@flat, @booking]  do |f| %>
             <%= f.input :start_date,
+                        label: "Date d'arrivée",
                         as: :string,
                         input_html: { data: { controller: "datepicker", datepicker_date_value: @dates_booking, pricecalculator_target: "start", action: "change->pricecalculator#update"}} %>
             <%= f.input :end_date,
+                        label: "Date de départ",
                         as: :string,
                         input_html: { data: { controller: "datepicker", datepicker_date_value: @dates_booking, pricecalculator_target: "end", action: "change->pricecalculator#update"}} %>
-            <%= f.submit %>
+            <%= f.submit 'Demande de réservation' %>
             <% end %>
 
             <div>
@@ -42,14 +54,5 @@
             </div>
           </div>
       </div>
-    </div>
-
-  <div>
-    <% if policy(@flat).edit? %>
-      <%= link_to 'Edit', edit_flat_path(@flat), class:'btn btn-primary' %>
-    <% end %>
-    <% if policy(@flat).destroy? %>
-      <%= link_to "Delete", flat_path(@flat), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'btn btn-warning' %>
-    <% end %>
     </div>
 </div>

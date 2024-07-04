@@ -1,4 +1,26 @@
 .flat {
   display: grid;
   grid-template-columns: 3fr 1fr;
+  grid-gap: 2rem;
+
+  @media screen and (max-width: 768px){
+    grid-template-columns: 1fr;
+  }
+}
+
+.flat-header  {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flat-content,
+.flat-booking {
+  padding: 2rem;
+  border-radius: 2rem;
+  background: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.flat-content {
+  margin-top: -5rem;
 }
