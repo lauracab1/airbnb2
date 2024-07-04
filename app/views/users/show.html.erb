@@ -6,6 +6,7 @@
         <p><%= flat.name %></p>
       <% end %>
     </div>
+    <%= link_to 'Add a flat', new_flat_path %>
   <h2>All my bookings</h2>
       <div>
       <% @bookings.each do |booking| %>

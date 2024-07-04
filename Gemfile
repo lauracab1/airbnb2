@@ -75,3 +75,4 @@ gem "geocoder"
 gem "devise"
 gem "pundit"
 gem "ffi", "~> 1.16.3"
+gem 'pg'
